@@ -64,19 +64,26 @@ class ErrorBoundary extends React.Component {
   }
 
   static getDerivedStateFromError(error) {
-    // Update state so the next render will show the fallback UI.
     return { hasError: true };
   }
 
   componentDidCatch(error, errorInfo) {
-    // You can also log the error to an error reporting service
     console.log(error, errorInfo);
   }
 
   render() {
     if (this.state.hasError) {
-      // You can render any custom fallback UI
-      return <h1>Something went wrong.</h1>;
+      return (
+        <div className="flex flex-col items-center justify-center h-screen text-center bg-gray-100 p-8">
+          <h1 className="mb-4 text-2xl font-semibold text-red-500">
+            Oops! Something went wrong.
+          </h1>
+          <p className="mb-6 text-lg text-gray-700">
+            We're sorry for the inconvenience. Please try refreshing the page or
+            fixing the syntax of your code.
+          </p>
+        </div>
+      );
     }
 
     return this.props.children;
@@ -97,8 +104,14 @@ const App = () => {
       <div className="w-1/2 bg-gray-200 p-4">
         <Editor
           height="90vh"
-          defaultLanguage="typescript"
-          defaultValue="// some comment"
+          defaultLanguage="javascript"
+          defaultValue="const [count, setCount] = React.useState(0);
+          const {menace, wudjer} = React.useContext(ExampleContext);
+          <>
+          <h1 className='bg-green-500'>{count}</h1>
+          <button onClick={() => setCount(count + 1)}> Click me! </button>
+          <h1> {menace} </h1>
+          </>"
           onChange={(value) => handleChange(value as string)}
         />
       </div>
