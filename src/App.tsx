@@ -100,8 +100,8 @@ const App = () => {
   };
 
   return (
-    <div className="flex h-screen w-screen">
-      <div className="w-1/2 bg-gray-200 p-4">
+    <div className="flex h-screen w-screen p-1 rounded-lg shadow-lg gap-4 py-3 px-4">
+      <div className="w-1/2 bg-gray-200 p-6 rounded-xl ">
         <Editor
           height="90vh"
           defaultLanguage="javascript"
@@ -115,7 +115,7 @@ const App = () => {
           onChange={(value) => handleChange(value as string)}
         />
       </div>
-      <div className="w-1/2 bg-gray-200 p-4" key={key}>
+      <div className="w-1/2 bg-gray-200 p-4 rounded-xl" key={key}>
         <ErrorBoundary>
           <TranspiledComponent jsx={editorValue} />
         </ErrorBoundary>
