@@ -30,8 +30,8 @@ function transpileJSX(jsxCode) {
   });
 }
 
-const TranspiledComponent = ({ jsx }) => {
-  const transpiledCode = transpileJSX(jsx);
+const TranspiledComponent = ({ jsx, initial }) => {
+  const transpiledCode = transpileJSX(jsx ?? initial);
   console.log(transpiledCode.code);
   try {
     eval(transpiledCode.code);
@@ -99,25 +99,27 @@ const App = () => {
     setKey(key + 1);
   };
 
+  const defaultCode = `const [count, setCount] = React.useState(0);
+          const {menace, wudjer} = React.useContext(ExampleContext);
+          <>
+          <h1 className='bg-green-500'>{count}</h1>
+          <button onClick={() => setCount(count + 1)}> Click me! </button>
+          <h1> {menace} </h1>
+          </>`;
+
   return (
     <div className="flex h-screen w-screen p-1 rounded-lg shadow-lg gap-4 py-3 px-4">
       <div className="w-1/2 bg-gray-200 p-6 rounded-xl ">
         <Editor
           height="90vh"
           defaultLanguage="javascript"
-          defaultValue="const [count, setCount] = React.useState(0);
-          const {menace, wudjer} = React.useContext(ExampleContext);
-          <>
-          <h1 className='bg-green-500'>{count}</h1>
-          <button onClick={() => setCount(count + 1)}> Click me! </button>
-          <h1> {menace} </h1>
-          </>"
+          defaultValue={defaultCode}
           onChange={(value) => handleChange(value as string)}
         />
       </div>
       <div className="w-1/2 bg-gray-200 p-4 rounded-xl" key={key}>
         <ErrorBoundary>
-          <TranspiledComponent jsx={editorValue} />
+          <TranspiledComponent jsx={editorValue} initial={defaultCode} />
         </ErrorBoundary>
       </div>
     </div>
