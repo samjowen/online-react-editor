@@ -31,19 +31,11 @@ function transpileJSX(jsxCode) {
 }
 
 const TranspiledComponent = ({ jsx, initial }) => {
-  const transpiledCode = transpileJSX(jsx ?? initial);
-  console.log(transpiledCode.code);
-  try {
-    eval(transpiledCode.code);
-  } catch (e) {
-    console.error(e);
-  }
+  const transpiledCode = React.useMemo(
+    () => transpileJSX(jsx ?? initial),
+    [initial, jsx]
+  );
 
-  const MyComponent = () => {
-    eval(transpiledCode.code);
-  };
-
-  console.log(MyComponent);
   try {
     return (
       <ExampleContextProvider>
