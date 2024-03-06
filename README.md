@@ -5,6 +5,6 @@ This is a very dangerous component that would need a security review before goin
 Potential use cases are:
 
 * User created components
-* "Server side rendering" (Dr Evil air quotes
+* "Server side rendering" (Dr Evil air quotes)
 
 If you don't understand why this component might be dangerous, please don't use it!
