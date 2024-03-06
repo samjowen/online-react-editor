@@ -1,4 +1,13 @@
-# React + TypeScript + Vite
+# React Online Editor Concept
+
+This is a very dangerous component that would need a security review before going anywhere near your production code. This is an experiment to see if I could get transpiled code to work in line in the browser. 
+
+Potential use cases are:
+
+* User created components
+* "Server side rendering" (Dr Evil air quotes)
+
+## React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
